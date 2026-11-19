@@ -3,13 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>JOY VAI — WinGo 30S 3D Water Panel</title>
+  <title>JOY VAI — HGNICE 3D Live Water Panel</title>
   <style>
-    :root {
-      --bg-page: #f5f7fa;
-      --text-dark: #1f2937;
-    }
-
     * {
       box-sizing: border-box;
       margin: 0;
@@ -18,297 +13,118 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    body {
-      background: var(--bg-page);
-      color: var(--text-dark);
-      min-height: 100vh;
-      overflow-x: hidden;
-      position: relative;
-    }
-
-    /* Background Mobile Portal Layout */
-    .portal-wrap {
-      max-width: 480px;
-      margin: 0 auto;
-      min-height: 100vh;
-      background: #f7f8fa;
-      padding-bottom: 110px;
-      position: relative;
-    }
-
-    .top-header {
-      background: #ffffff;
-      padding: 12px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid #eef0f4;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    .brand-logo {
-      font-weight: 900;
-      font-size: 20px;
-      letter-spacing: -0.5px;
-      background: linear-gradient(90deg, #ef4444, #f97316);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .id-pill {
-      background: #ecfeff;
-      color: #0e7490;
-      border: 1px solid #a5f3fc;
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.15fr;
-      gap: 12px;
-      padding: 12px 14px 6px;
-    }
-
-    .promo-banner {
-      background: linear-gradient(135deg, #b91c1c, #7f1d1d);
-      border-radius: 14px;
-      padding: 14px;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 140px;
-      box-shadow: 0 6px 16px rgba(185, 28, 28, 0.2);
-    }
-
-    .promo-banner .tag {
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 0.8px;
-      background: rgba(255, 255, 255, 0.18);
-      padding: 3px 8px;
-      border-radius: 6px;
-      width: fit-content;
-    }
-
-    .promo-banner h3 {
-      font-size: 18px;
-      font-weight: 900;
-      line-height: 1.15;
-      color: #fde047;
-      margin-top: 8px;
-    }
-
-    .promo-banner p {
-      font-size: 11px;
-      color: #fecaca;
-      margin-top: 6px;
-    }
-
-    .notice-bar {
-      margin: 8px 14px;
-      background: #ffffff;
-      border-radius: 999px;
-      padding: 8px 14px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-      font-size: 12px;
-      color: #374151;
-    }
-
-    .notice-icon {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: #fee2e2;
-      color: #ef4444;
-      display: grid;
-      place-items: center;
-      font-size: 12px;
-      flex-shrink: 0;
-    }
-
-    .cat-row-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      padding: 6px 14px;
-    }
-
-    .cat-card {
-      border-radius: 14px;
-      padding: 12px 8px;
-      text-align: center;
-      color: #ffffff;
-      font-weight: 800;
-      font-size: 13px;
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
-      cursor: pointer;
-    }
-
-    .cat-popular { background: linear-gradient(145deg, #60a5fa, #2563eb); }
-    .cat-lottery { background: linear-gradient(145deg, #c084fc, #7e22ce); }
-    .cat-slots { background: linear-gradient(145deg, #38bdf8, #0284c7); }
-
-    .banner-strip {
-      margin: 10px 14px;
-      border-radius: 16px;
-      padding: 14px;
-      background: linear-gradient(135deg, #fb923c, #f43f5e);
-      color: #fff;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      text-align: center;
-      font-weight: 800;
-      font-size: 13px;
-      box-shadow: 0 8px 18px rgba(244, 63, 94, 0.2);
-    }
-
-    .cat-row-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      padding: 4px 14px;
-    }
-
-    .cat-fishing {
-      background: linear-gradient(135deg, #fbbf24, #f97316);
-      border-radius: 14px;
-      padding: 14px;
-      color: #fff;
-      font-weight: 800;
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      cursor: pointer;
-    }
-
-    .cat-original {
-      background: linear-gradient(135deg, #f472b6, #ec4899);
-      border-radius: 14px;
-      padding: 14px;
-      color: #fff;
-      font-weight: 800;
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      cursor: pointer;
-    }
-
-    .section-title {
-      padding: 14px 14px 6px;
-      font-size: 15px;
-      font-weight: 800;
-      color: #111827;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .section-title::before {
-      content: "";
-      width: 4px;
-      height: 16px;
-      border-radius: 4px;
-      background: #ef4444;
-    }
-
-    .wingo-card {
-      margin: 4px 14px 12px;
-      border-radius: 18px;
-      padding: 16px;
-      background: linear-gradient(135deg, #ff8a7a, #ff6b6b);
-      color: #ffffff;
-      box-shadow: 0 10px 22px rgba(255, 107, 107, 0.25);
-    }
-
-    .wingo-card h4 {
-      font-size: 18px;
-      font-weight: 900;
-    }
-
-    .wingo-card p {
-      font-size: 12px;
-      opacity: 0.95;
-      margin-top: 3px;
-    }
-
-    .desktop-btn {
-      margin-top: 12px;
+    html, body {
       width: 100%;
-      background: rgba(255, 255, 255, 0.92);
-      color: #1f2937;
+      height: 100%;
+      overflow: hidden;
+      background: #0f172a;
+    }
+
+    /* Fullscreen Login/Site Frame Layer */
+    .site-layer {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      background: #f8fafc;
+    }
+
+    .site-iframe {
+      width: 100%;
+      height: 100%;
       border: none;
-      border-radius: 999px;
-      padding: 10px 14px;
-      font-weight: 800;
-      font-size: 13px;
-      display: flex;
+      display: block;
+    }
+
+    /* Fallback if target site blocks embedding in iframe */
+    .embed-fallback {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(160deg, #fff1f2 0%, #ffe4e6 45%, #f8fafc 100%);
+      display: none;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-    }
-
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      max-width: 480px;
-      background: #ffffff;
-      border-top: 1px solid #e5e7eb;
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      align-items: center;
-      padding: 8px 4px 10px;
-      z-index: 20;
-    }
-
-    .nav-item {
+      padding: 20px;
       text-align: center;
-      font-size: 10px;
-      font-weight: 700;
-      color: #6b7280;
+      z-index: 2;
+    }
+
+    .embed-fallback.show {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 3px;
+    }
+
+    .fallback-card {
+      width: 100%;
+      max-width: 380px;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 22px 18px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+      border: 1px solid #fecdd3;
+    }
+
+    .fallback-badge {
+      display: inline-block;
+      background: #fee2e2;
+      color: #dc2626;
+      font-size: 11px;
+      font-weight: 900;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    .fallback-card h2 {
+      font-size: 20px;
+      font-weight: 900;
+      color: #111827;
+      margin-bottom: 6px;
+    }
+
+    .fallback-card p {
+      font-size: 12px;
+      color: #4b5563;
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+
+    .direct-login-btn {
+      width: 100%;
+      padding: 12px 16px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(90deg, #ef4444, #f97316);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(239, 68, 68, 0.3);
+    }
+
+    .mini-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .ghost-btn {
+      flex: 1;
+      padding: 9px 10px;
+      border-radius: 10px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      color: #1e293b;
+      font-size: 11px;
+      font-weight: 800;
       cursor: pointer;
     }
 
-    .nav-item.active {
-      color: #ef4444;
-    }
-
-    .nav-center-gem {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #ff7e67, #ff4b5c);
-      color: #fff;
-      display: grid;
-      place-items: center;
-      margin: -18px auto 2px;
-      box-shadow: 0 6px 14px rgba(255, 75, 92, 0.35);
-      font-size: 18px;
-    }
-
+    /* Bottom Floating Quick Chips */
     .floating-chips {
       position: fixed;
-      bottom: 66px;
+      bottom: 16px;
       left: 14px;
       display: flex;
       align-items: center;
@@ -319,7 +135,7 @@
     .chip-btn {
       background: #ffffff;
       color: #0f172a;
-      border: 1px solid #dbeafe;
+      border: 1px solid #bae6fd;
       border-radius: 10px;
       padding: 7px 12px;
       font-size: 12px;
@@ -327,13 +143,12 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.14);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.18);
       cursor: pointer;
       text-decoration: none;
     }
 
     .chip-btn.primary-chip {
-      border-color: #67e8f9;
       color: #0369a1;
     }
 
@@ -342,8 +157,8 @@
       position: fixed;
       top: 76px;
       right: 12px;
-      width: 258px;
-      perspective: 950px;
+      width: 264px;
+      perspective: 920px;
       z-index: 50;
       user-select: none;
     }
@@ -366,14 +181,13 @@
         ),
         linear-gradient(160deg, #dff9ff 0%, #aeeeff 48%, #67e8f9 100%);
       backdrop-filter: blur(14px);
-      border: 1.5px solid rgba(255, 255, 255, 0.9);
+      border: 1.5px solid rgba(255, 255, 255, 0.92);
       box-shadow:
-        0 24px 48px rgba(2, 132, 199, 0.28),
+        0 24px 48px rgba(2, 132, 199, 0.3),
         inset 0 1px 2px rgba(255, 255, 255, 0.95);
-      transition: transform 0.14s ease-out, box-shadow 0.2s ease;
+      transition: transform 0.12s ease-out;
     }
 
-    /* Dynamic 3D Specular Sheen on Panel */
     .water-panel::before {
       content: "";
       position: absolute;
@@ -406,9 +220,7 @@
       transform: translateZ(16px);
     }
 
-    .panel-header:active {
-      cursor: grabbing;
-    }
+    .panel-header:active { cursor: grabbing; }
 
     .panel-brand {
       display: flex;
@@ -428,35 +240,18 @@
       box-shadow: 0 3px 8px rgba(2, 132, 199, 0.35);
     }
 
-    .panel-title-group {
-      line-height: 1.1;
-    }
+    .panel-title-group { line-height: 1.1; }
+    .panel-title-group .name { font-size: 12px; font-weight: 900; color: #0f172a; }
+    .panel-title-group .sub { font-size: 9px; font-weight: 800; color: #0369a1; letter-spacing: 0.4px; }
 
-    .panel-title-group .name {
-      font-size: 12px;
-      font-weight: 900;
-      color: #0f172a;
-    }
-
-    .panel-title-group .sub {
-      font-size: 9px;
-      font-weight: 800;
-      color: #0369a1;
-      letter-spacing: 0.5px;
-    }
-
-    .panel-controls {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
+    .panel-controls { display: flex; align-items: center; gap: 6px; }
 
     .icon-circle-btn {
       width: 22px;
       height: 22px;
       border-radius: 50%;
       border: none;
-      background: rgba(255, 255, 255, 0.88);
+      background: rgba(255, 255, 255, 0.9);
       color: #0f172a;
       font-weight: 900;
       font-size: 12px;
@@ -468,7 +263,7 @@
 
     /* Lock View */
     .lock-card {
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.82);
       border-radius: 16px;
       padding: 16px 12px;
       text-align: center;
@@ -476,9 +271,7 @@
       transform: translateZ(10px);
     }
 
-    .lock-card.hidden {
-      display: none;
-    }
+    .lock-card.hidden { display: none; }
 
     .lock-icon-ring {
       width: 44px;
@@ -493,24 +286,10 @@
       box-shadow: 0 6px 14px rgba(2, 132, 199, 0.28);
     }
 
-    .lock-title {
-      font-size: 13px;
-      font-weight: 900;
-      color: #0f172a;
-      letter-spacing: 0.4px;
-    }
+    .lock-title { font-size: 13px; font-weight: 900; color: #0f172a; letter-spacing: 0.4px; }
+    .lock-sub { font-size: 10px; color: #475569; margin-top: 2px; margin-bottom: 12px; }
 
-    .lock-sub {
-      font-size: 10px;
-      color: #475569;
-      margin-top: 2px;
-      margin-bottom: 12px;
-    }
-
-    .pass-input-wrap {
-      position: relative;
-      margin-bottom: 10px;
-    }
+    .pass-input-wrap { position: relative; margin-bottom: 10px; }
 
     .pass-input {
       width: 100%;
@@ -524,9 +303,7 @@
       outline: none;
     }
 
-    .pass-input:focus {
-      border-color: #0284c7;
-    }
+    .pass-input:focus { border-color: #0284c7; }
 
     .eye-toggle {
       position: absolute;
@@ -572,12 +349,10 @@
       transform: translateZ(12px);
     }
 
-    .unlocked-view.active {
-      display: block;
-    }
+    .unlocked-view.active { display: block; }
 
     .meta-strip {
-      background: rgba(255, 255, 255, 0.84);
+      background: rgba(255, 255, 255, 0.86);
       border-radius: 12px;
       padding: 8px;
       display: flex;
@@ -587,17 +362,8 @@
       margin-bottom: 8px;
     }
 
-    .period-box .lbl {
-      font-size: 8px;
-      font-weight: 800;
-      color: #64748b;
-    }
-
-    .period-box .val {
-      font-size: 11px;
-      font-weight: 900;
-      color: #0f172a;
-    }
+    .period-box .lbl { font-size: 8px; font-weight: 800; color: #64748b; }
+    .period-box .val { font-size: 11px; font-weight: 900; color: #0f172a; }
 
     .timer-pill {
       background: linear-gradient(90deg, #fb7185, #ef4444);
@@ -625,8 +391,6 @@
       color: #ffffff;
       margin-bottom: 8px;
       box-shadow: 0 6px 14px rgba(2, 132, 199, 0.25);
-      position: relative;
-      overflow: hidden;
     }
 
     .signal-top {
@@ -666,12 +430,11 @@
       margin-top: 3px;
     }
 
-    /* Probable 2 Numbers with Animated Water Inside Digits */
     .numbers-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 8px;
-      background: rgba(255, 255, 255, 0.82);
+      background: rgba(255, 255, 255, 0.86);
       border-radius: 14px;
       padding: 8px;
       text-align: center;
@@ -687,106 +450,41 @@
       margin-bottom: 2px;
     }
 
-    .num-ball {
-      width: 52px;
-      height: 52px;
-      margin: 0 auto;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 25%, #ffffff, #e0f2fe 65%, #bae6fd 100%);
-      border: 2px solid #7dd3fc;
+    .wave-num-card {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      box-shadow:
-        0 6px 14px rgba(2, 132, 199, 0.24),
-        inset 0 2px 5px rgba(255, 255, 255, 0.9);
-      position: relative;
-      overflow: hidden;
     }
 
-    /* Moving Liquid Water Clipped Inside the Digit */
-    .liquid-digit {
-      font-size: 28px;
-      font-weight: 950;
-      line-height: 1;
-      display: inline-block;
-      background-image:
-        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.85) 0%, transparent 25%),
-        repeating-linear-gradient(
-          -25deg,
-          #0284c7 0px,
-          #06b6d4 8px,
-          #38bdf8 16px,
-          #0ea5e9 24px,
-          #0369a1 32px
-        );
-      background-size: 220% 220%;
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      color: transparent;
-      filter: drop-shadow(0 2px 3px rgba(2, 132, 199, 0.35));
-      animation: waterFlowInside 2.6s linear infinite;
-    }
-
-    .num-ball:nth-child(2) .liquid-digit {
-      animation-direction: reverse;
-      animation-duration: 3.1s;
-    }
-
-    @keyframes waterFlowInside {
-      0% {
-        background-position: 0% 50%;
-        transform: translateY(0px) scale(1);
-      }
-      50% {
-        background-position: 100% 65%;
-        transform: translateY(-1.5px) scale(1.04);
-      }
-      100% {
-        background-position: 200% 50%;
-        transform: translateY(0px) scale(1);
-      }
-    }
-
-    /* Subtle Water Ripple Overlay inside Ball */
-    .water-ripple {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: radial-gradient(circle at 50% 75%, rgba(56, 189, 248, 0.28), transparent 65%);
-      animation: ripplePulse 2.2s ease-in-out infinite;
-    }
-
-    @keyframes ripplePulse {
-      0%, 100% { transform: scale(0.92); opacity: 0.55; }
-      50% { transform: scale(1.12); opacity: 0.9; }
+    .wave-svg {
+      width: 64px;
+      height: 64px;
+      filter: drop-shadow(0 5px 10px rgba(2, 132, 199, 0.28));
     }
 
     .sub-lbl {
-      font-size: 7px;
+      font-size: 8px;
       font-weight: 900;
       color: #0369a1;
-      margin-top: 1px;
-      position: relative;
-      z-index: 2;
+      margin-top: -2px;
     }
 
-    .panel-footer-info {
+    .sync-row {
       margin-top: 8px;
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.86);
       border-radius: 10px;
       padding: 6px 8px;
-      font-size: 9px;
-      font-weight: 800;
-      color: #0f172a;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 6px;
+      font-size: 9px;
+      font-weight: 800;
+      color: #0f172a;
     }
 
-    .mini-link-btn {
+    .sync-btn {
       background: #0284c7;
       color: #fff;
       border: none;
@@ -796,183 +494,48 @@
       font-weight: 800;
       cursor: pointer;
     }
-
-    /* Info Modal */
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.55);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 18px;
-      z-index: 100;
-    }
-
-    .modal-backdrop.open {
-      display: flex;
-    }
-
-    .modal-card {
-      background: #ffffff;
-      border-radius: 18px;
-      width: 100%;
-      max-width: 360px;
-      padding: 18px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-    }
-
-    .modal-card h3 {
-      font-size: 16px;
-      font-weight: 900;
-      color: #0f172a;
-      margin-bottom: 6px;
-    }
-
-    .modal-card p {
-      font-size: 12px;
-      color: #475569;
-      margin-bottom: 12px;
-      line-height: 1.45;
-    }
-
-    .ref-box {
-      background: #f1f5f9;
-      border: 1px solid #cbd5e1;
-      border-radius: 10px;
-      padding: 9px 10px;
-      font-size: 11px;
-      font-weight: 700;
-      color: #0f172a;
-      word-break: break-all;
-      margin-bottom: 10px;
-    }
-
-    .modal-actions {
-      display: flex;
-      gap: 8px;
-    }
-
-    .btn-copy {
-      flex: 1;
-      background: #0284c7;
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      padding: 10px;
-      font-weight: 800;
-      font-size: 12px;
-      cursor: pointer;
-    }
-
-    .btn-close {
-      background: #e2e8f0;
-      color: #1e293b;
-      border: none;
-      border-radius: 10px;
-      padding: 10px 14px;
-      font-weight: 800;
-      font-size: 12px;
-      cursor: pointer;
-    }
   </style>
 </head>
 <body>
 
-  <div class="portal-wrap">
-    <header class="top-header">
-      <div class="brand-logo">HGNICE</div>
-      <span class="id-pill" onclick="openRefModal()">ID: @BDT588</span>
-    </header>
-
-    <div class="hero-grid">
-      <div class="promo-banner">
-        <span class="tag">HGNICE VIP</span>
-        <div>
-          <h3>JOY VAI<br>SPECIAL</h3>
-          <p>Official Partner @BDT588</p>
-        </div>
-      </div>
-      <div style="background:#fff;border-radius:14px;padding:12px;display:flex;flex-direction:column;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.04);">
-        <div style="font-size:11px;font-weight:800;color:#0284c7;margin-bottom:4px;">ACTIVE PARTNER</div>
-        <div style="font-size:15px;font-weight:900;color:#111827;">JOY VAI</div>
-        <div style="font-size:11px;color:#4b5563;margin-top:2px;">ID: <b>@BDT588</b></div>
-        <button onclick="openRefModal()" style="margin-top:10px;background:#0ea5e9;color:#fff;border:none;border-radius:8px;padding:7px;font-size:11px;font-weight:800;cursor:pointer;">
-          Referral Link
-        </button>
-      </div>
-    </div>
-
-    <div class="notice-bar">
-      <div class="notice-icon">🔊</div>
-      <div>Attention!!! Welcome to <b>JOY VAI</b> panel — ID <b>@BDT588</b>.</div>
-    </div>
-
-    <div class="cat-row-3">
-      <div class="cat-card cat-popular" onclick="goReferral()">🏆<br>Popular</div>
-      <div class="cat-card cat-lottery" onclick="goReferral()">🎱<br>Lottery</div>
-      <div class="cat-card cat-slots" onclick="goReferral()">🎰<br>Slots</div>
-    </div>
-
-    <div class="banner-strip">
-      <div onclick="goReferral()" style="cursor:pointer;">⚽<br>Sports</div>
-      <div onclick="goReferral()" style="cursor:pointer;">🎲<br>Casino</div>
-      <div onclick="goReferral()" style="cursor:pointer;">🃏<br>Rummy</div>
-    </div>
-
-    <div class="cat-row-2">
-      <div class="cat-fishing" onclick="goReferral()">
-        <span>Fishing</span>
-        <span>🦈</span>
-      </div>
-      <div class="cat-original" onclick="goReferral()">
-        <span>Original</span>
-        <span>✈️</span>
-      </div>
-    </div>
-
-    <div class="section-title">Lottery</div>
-    <div class="wingo-card">
-      <h4>Win Go</h4>
-      <p>Guess Number • Green/Red/Violet to win</p>
-      <button class="desktop-btn" onclick="goReferral()">
-        <span>🔗</span> Join via JOY VAI Referral
-      </button>
-    </div>
-
-    <nav class="bottom-nav">
-      <div class="nav-item active" onclick="goReferral()">
-        <span>🏠</span>
-        <span>Home</span>
-      </div>
-      <div class="nav-item" onclick="goReferral()">
-        <span>🎁</span>
-        <span>Activity</span>
-      </div>
-      <div class="nav-item" onclick="openRefModal()">
-        <div class="nav-center-gem">💎</div>
-        <span>Promotion</span>
-      </div>
-      <div class="nav-item" onclick="goReferral()">
-        <span>👛</span>
-        <span>Wallet</span>
-      </div>
-      <div class="nav-item" onclick="openRefModal()">
-        <span>👤</span>
-        <span>Account</span>
-      </div>
-    </nav>
+  <!-- Login / Referral Page Layer -->
+  <div class="site-layer">
+    <iframe
+      id="loginFrame"
+      class="site-iframe"
+      src="https://hgnice.bet/#/register?invitationCode=376851951983"
+      allow="clipboard-write; fullscreen"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
   </div>
 
-  <!-- Bottom Floating Action Chips -->
+  <!-- Automatic Fallback Card if Target Site Blocks Iframe Embedding -->
+  <div class="embed-fallback" id="embedFallback">
+    <div class="fallback-card">
+      <div class="fallback-badge">JOY VAI • @BDT588</div>
+      <h2>HGNICE Direct Login</h2>
+      <p>
+        Target site blocks embedded preview inside another site. Tap below to open the official login page directly with <b>JOY VAI</b> referral.
+      </p>
+      <button class="direct-login-btn" onclick="goDirectLogin()">
+        Open Login Page Now
+      </button>
+      <div class="mini-row">
+        <button class="ghost-btn" onclick="copyRef()">Copy Referral</button>
+        <button class="ghost-btn" onclick="hideFallback()">Keep Panel View</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Bottom Chips -->
   <div class="floating-chips">
-    <button class="chip-btn primary-chip" onclick="openRefModal()">
-      <span>◎</span>
+    <a class="chip-btn primary-chip" href="https://hgnice.bet/#/register?invitationCode=376851951983">
+      <span>💧</span>
       <span>JOY VAI</span>
-    </button>
-    <a class="chip-btn" href="https://hgnice.bet/#/register?invitationCode=376851951983" target="_blank" rel="noopener noreferrer">
+    </a>
+    <a class="chip-btn" href="https://hgnice.bet/#/register?invitationCode=376851951983">
       <span>↗</span>
-      <span>Site</span>
+      <span>Login</span>
     </a>
   </div>
 
@@ -994,7 +557,7 @@
       </div>
 
       <div class="panel-body">
-        <!-- Lock Screen -->
+        <!-- Lock View -->
         <div class="lock-card" id="lockCard">
           <div class="lock-icon-ring">🔒</div>
           <div class="lock-title">WATERFALL LOCK</div>
@@ -1023,8 +586,8 @@
         <div class="unlocked-view" id="unlockedView">
           <div class="meta-strip">
             <div class="period-box">
-              <div class="lbl">PERIOD</div>
-              <div class="val" id="periodVal">#51789</div>
+              <div class="lbl">LIVE PERIOD</div>
+              <div class="val" id="periodVal">#00001</div>
             </div>
             <div class="timer-pill" id="timerVal">00:30</div>
             <div class="api-tag" id="refreshBtn" title="Refresh Signal">↻ API</div>
@@ -1042,50 +605,124 @@
             <div class="prob-pct" id="probText">78%</div>
           </div>
 
+          <!-- Probable 2 Numbers with Real Animated Water Inside Digits -->
           <div class="numbers-grid">
             <div class="num-head">
               <span>PROBABLE 2 NUMBERS</span>
               <span>WAVE ZIGZAG</span>
             </div>
-            <div class="num-ball">
-              <div class="water-ripple"></div>
-              <span class="liquid-digit" id="num1">2</span>
+
+            <div class="wave-num-card">
+              <svg class="wave-svg" viewBox="0 0 100 100">
+                <defs>
+                  <linearGradient id="waterGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#38bdf8" />
+                    <stop offset="55%" stop-color="#0284c7" />
+                    <stop offset="100%" stop-color="#0369a1" />
+                  </linearGradient>
+                  <linearGradient id="waterGradBack1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#7dd3fc" />
+                    <stop offset="100%" stop-color="#0ea5e9" />
+                  </linearGradient>
+                  <clipPath id="digitClip1">
+                    <text x="50" y="76" text-anchor="middle" font-size="74" font-weight="900" font-family="Arial Black, sans-serif" id="svgDigit1">2</text>
+                  </clipPath>
+                </defs>
+
+                <circle cx="50" cy="50" r="45" fill="#f0f9ff" stroke="#7dd3fc" stroke-width="3" />
+                <g clip-path="url(#digitClip1)">
+                  <rect x="0" y="0" width="100" height="100" fill="#e0f2fe" />
+                  <path id="backWave1" fill="url(#waterGradBack1)" opacity="0.72" />
+                  <path id="frontWave1" fill="url(#waterGrad1)" />
+                  <circle id="bubble1A" cx="35" cy="70" r="3" fill="#ffffff" opacity="0.7" />
+                  <circle id="bubble1B" cx="65" cy="80" r="2.2" fill="#ffffff" opacity="0.6" />
+                </g>
+                <text x="50" y="76" text-anchor="middle" font-size="74" font-weight="900" font-family="Arial Black, sans-serif" fill="none" stroke="#0284c7" stroke-width="2" id="svgDigitOutline1">2</text>
+              </svg>
               <span class="sub-lbl">P1</span>
             </div>
-            <div class="num-ball">
-              <div class="water-ripple"></div>
-              <span class="liquid-digit" id="num2">4</span>
+
+            <div class="wave-num-card">
+              <svg class="wave-svg" viewBox="0 0 100 100">
+                <defs>
+                  <linearGradient id="waterGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#38bdf8" />
+                    <stop offset="55%" stop-color="#0284c7" />
+                    <stop offset="100%" stop-color="#0369a1" />
+                  </linearGradient>
+                  <linearGradient id="waterGradBack2" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#7dd3fc" />
+                    <stop offset="100%" stop-color="#0ea5e9" />
+                  </linearGradient>
+                  <clipPath id="digitClip2">
+                    <text x="50" y="76" text-anchor="middle" font-size="74" font-weight="900" font-family="Arial Black, sans-serif" id="svgDigit2">4</text>
+                  </clipPath>
+                </defs>
+
+                <circle cx="50" cy="50" r="45" fill="#f0f9ff" stroke="#7dd3fc" stroke-width="3" />
+                <g clip-path="url(#digitClip2)">
+                  <rect x="0" y="0" width="100" height="100" fill="#e0f2fe" />
+                  <path id="backWave2" fill="url(#waterGradBack2)" opacity="0.72" />
+                  <path id="frontWave2" fill="url(#waterGrad2)" />
+                  <circle id="bubble2A" cx="42" cy="74" r="2.8" fill="#ffffff" opacity="0.7" />
+                  <circle id="bubble2B" cx="62" cy="68" r="2.2" fill="#ffffff" opacity="0.6" />
+                </g>
+                <text x="50" y="76" text-anchor="middle" font-size="74" font-weight="900" font-family="Arial Black, sans-serif" fill="none" stroke="#0284c7" stroke-width="2" id="svgDigitOutline2">4</text>
+              </svg>
               <span class="sub-lbl">P2</span>
             </div>
           </div>
 
-          <div class="panel-footer-info">
+          <!-- Market Period Sync Control (100% Match with Market) -->
+          <div class="sync-row">
             <span>ID: @BDT588</span>
-            <button class="mini-link-btn" onclick="openRefModal()">Refer</button>
+            <button class="sync-btn" id="setPeriodBtn" title="Match Exact Market Period">Set Period</button>
           </div>
         </div>
       </div>
     </aside>
   </div>
 
-  <!-- Referral & JOY VAI Modal -->
-  <div class="modal-backdrop" id="refModal">
-    <div class="modal-card">
-      <h3>JOY VAI — Official Info</h3>
-      <p><b>Name:</b> JOY VAI<br><b>User ID:</b> @BDT588</p>
-      <div class="ref-box">https://hgnice.bet/#/register?invitationCode=376851951983</div>
-      <div class="modal-actions">
-        <button class="btn-copy" id="copyRefBtn">Copy Link</button>
-        <button class="btn-close" id="closeModalBtn">Close</button>
-      </div>
-    </div>
-  </div>
-
   <script>
     const REFERRAL_URL = "https://hgnice.bet/#/register?invitationCode=376851951983";
     const VALID_KEYS = ["JOY-WATER", "KAMRUL-WATER", "JOYVAI", "BDT588"];
 
-    const stage = document.getElementById("waterStage");
+    function goDirectLogin() {
+      window.location.href = REFERRAL_URL;
+    }
+
+    async function copyRef() {
+      try {
+        await navigator.clipboard.writeText(REFERRAL_URL);
+        alert("Referral link copied!");
+      } catch {
+        alert(REFERRAL_URL);
+      }
+    }
+
+    const embedFallback = document.getElementById("embedFallback");
+    const loginFrame = document.getElementById("loginFrame");
+
+    function hideFallback() {
+      embedFallback.classList.remove("show");
+    }
+
+    // Detect if cross-origin site blocks iframe rendering
+    setTimeout(() => {
+      try {
+        const doc = loginFrame.contentDocument;
+        if (!doc || doc.body.innerHTML.trim() === "") {
+          embedFallback.classList.add("show");
+        }
+      } catch {
+        // Cross-origin frame loaded or restricted; if blank after load, show option
+      }
+    }, 2800);
+
+    loginFrame.addEventListener("error", () => {
+      embedFallback.classList.add("show");
+    });
+
     const panel = document.getElementById("waterPanel");
     const dragHandle = document.getElementById("panelDragHandle");
     const lockCard = document.getElementById("lockCard");
@@ -1097,6 +734,7 @@
     const lockToggleBtn = document.getElementById("lockToggleBtn");
     const minToggleBtn = document.getElementById("minToggleBtn");
     const refreshBtn = document.getElementById("refreshBtn");
+    const setPeriodBtn = document.getElementById("setPeriodBtn");
 
     const periodVal = document.getElementById("periodVal");
     const timerVal = document.getElementById("timerVal");
@@ -1104,17 +742,96 @@
     const rangeLabel = document.getElementById("rangeLabel");
     const probBar = document.getElementById("probBar");
     const probText = document.getElementById("probText");
-    const num1 = document.getElementById("num1");
-    const num2 = document.getElementById("num2");
 
-    const refModal = document.getElementById("refModal");
-    const copyRefBtn = document.getElementById("copyRefBtn");
-    const closeModalBtn = document.getElementById("closeModalBtn");
+    const svgDigit1 = document.getElementById("svgDigit1");
+    const svgDigitOutline1 = document.getElementById("svgDigitOutline1");
+    const svgDigit2 = document.getElementById("svgDigit2");
+    const svgDigitOutline2 = document.getElementById("svgDigitOutline2");
+
+    const frontWave1 = document.getElementById("frontWave1");
+    const backWave1 = document.getElementById("backWave1");
+    const frontWave2 = document.getElementById("frontWave2");
+    const backWave2 = document.getElementById("backWave2");
+
+    const bubble1A = document.getElementById("bubble1A");
+    const bubble1B = document.getElementById("bubble1B");
+    const bubble2A = document.getElementById("bubble2A");
+    const bubble2B = document.getElementById("bubble2B");
 
     let isUnlocked = false;
-    let currentPeriod = 51789;
     let tiltX = 0;
     let tiltY = 0;
+    let waveSurge = 1;
+
+    // Exact 30-second market period clock calculation (UTC/GMT+8 standard WinGo 30s index + user offset)
+    const STORAGE_OFFSET_KEY = "JOYVAI_WINGO30_OFFSET";
+    let periodOffset = Number(localStorage.getItem(STORAGE_OFFSET_KEY) || 0);
+
+    function getCurrentMarketPeriod() {
+      // Standard 30s slot count since UTC epoch
+      const slot30s = Math.floor(Date.now() / 30000);
+      return slot30s + periodOffset;
+    }
+
+    function getSecondsRemaining() {
+      const nowSec = Math.floor(Date.now() / 1000);
+      return 30 - (nowSec % 30);
+    }
+
+    let lastSyncedPeriod = getCurrentMarketPeriod();
+
+    function syncPeriodDisplay() {
+      const p = getCurrentMarketPeriod();
+      periodVal.textContent = "#" + p;
+      return p;
+    }
+
+    setPeriodBtn.addEventListener("click", () => {
+      const currentShown = getCurrentMarketPeriod();
+      const input = prompt("Enter exact current market period number (e.g. 20261119300010500):", String(currentShown));
+      if (!input) return;
+      const targetNum = Number(input.replace(/\D/g, ""));
+      if (!Number.isFinite(targetNum) || targetNum <= 0) return;
+
+      const baseSlot = Math.floor(Date.now() / 30000);
+      periodOffset = targetNum - baseSlot;
+      localStorage.setItem(STORAGE_OFFSET_KEY, String(periodOffset));
+      lastSyncedPeriod = syncPeriodDisplay();
+      if (isUnlocked) generateSignal();
+    });
+
+    function buildWavePath(phase, amp, baseY) {
+      let d = `M 0 110 L 0 ${baseY}`;
+      for (let x = 0; x <= 104; x += 6) {
+        const y = baseY + Math.sin(x * 0.085 + phase) * amp + Math.cos(x * 0.04 - phase * 0.7) * (amp * 0.45);
+        d += ` L ${x} ${y.toFixed(2)}`;
+      }
+      d += " L 104 110 Z";
+      return d;
+    }
+
+    let t = 0;
+    function animateWaves() {
+      t += 0.12 * waveSurge;
+      waveSurge = Math.max(1, waveSurge * 0.96);
+
+      const level1 = 44 + Math.sin(t * 0.7) * 4;
+      const level2 = 46 + Math.cos(t * 0.65) * 4;
+
+      frontWave1.setAttribute("d", buildWavePath(t, 4.8 * waveSurge, level1));
+      backWave1.setAttribute("d", buildWavePath(-t * 0.85 + 1.4, 4.0 * waveSurge, level1 - 3));
+
+      frontWave2.setAttribute("d", buildWavePath(t * 1.1 + 2.1, 4.8 * waveSurge, level2));
+      backWave2.setAttribute("d", buildWavePath(-t * 0.9 + 0.5, 4.0 * waveSurge, level2 - 3));
+
+      bubble1A.setAttribute("cy", (85 - ((t * 16) % 55)).toFixed(1));
+      bubble1B.setAttribute("cy", (85 - ((t * 19 + 12) % 55)).toFixed(1));
+      bubble2A.setAttribute("cy", (82 - ((t * 13 + 20) % 52)).toFixed(1));
+      bubble2B.setAttribute("cy", (85 - ((t * 15 + 28) % 55)).toFixed(1));
+
+      requestAnimationFrame(animateWaves);
+    }
+    requestAnimationFrame(animateWaves);
 
     function apply3DTransform(extraScale = 1) {
       panel.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(${extraScale})`;
@@ -1122,10 +839,10 @@
 
     function updateTiltFromPoint(clientX, clientY) {
       const rect = panel.getBoundingClientRect();
-      const nx = ((clientX - rect.left) / rect.width) * 2 - 1;  // -1 to 1
-      const ny = ((clientY - rect.top) / rect.height) * 2 - 1;  // -1 to 1
-      tiltY = Math.max(-14, Math.min(14, nx * 13));
-      tiltX = Math.max(-14, Math.min(14, -ny * 13));
+      const nx = ((clientX - rect.left) / rect.width) * 2 - 1;
+      const ny = ((clientY - rect.top) / rect.height) * 2 - 1;
+      tiltY = Math.max(-15, Math.min(15, nx * 14));
+      tiltX = Math.max(-15, Math.min(15, -ny * 14));
       panel.style.setProperty("--sheen-x", `${Math.max(0, Math.min(100, (nx + 1) * 50))}%`);
       panel.style.setProperty("--sheen-y", `${Math.max(0, Math.min(100, (ny + 1) * 50))}%`);
       apply3DTransform(1.02);
@@ -1146,50 +863,34 @@
       if (!isDragging) resetTilt();
     });
 
-    function goReferral() {
-      window.open(REFERRAL_URL, "_blank", "noopener,noreferrer");
-    }
-
-    function openRefModal() {
-      refModal.classList.add("open");
-    }
-
-    closeModalBtn.addEventListener("click", () => refModal.classList.remove("open"));
-    refModal.addEventListener("click", (e) => {
-      if (e.target === refModal) refModal.classList.remove("open");
-    });
-
-    copyRefBtn.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(REFERRAL_URL);
-        copyRefBtn.textContent = "Copied!";
-        setTimeout(() => (copyRefBtn.textContent = "Copy Link"), 1500);
-      } catch {
-        copyRefBtn.textContent = "Ready";
-      }
-    });
-
     eyeBtn.addEventListener("click", () => {
       passInput.type = passInput.type === "password" ? "text" : "password";
     });
 
+    function setDigits(d1, d2) {
+      svgDigit1.textContent = d1;
+      svgDigitOutline1.textContent = d1;
+      svgDigit2.textContent = d2;
+      svgDigitOutline2.textContent = d2;
+      waveSurge = 2.2;
+    }
+
     function generateSignal() {
-      const isSmall = Math.random() > 0.45;
-      const pct = Math.floor(Math.random() * 19) + 72;
+      const p = syncPeriodDisplay();
+      // Deterministic mix from period number so period & signal stay aligned
+      const seed = Math.abs(p * 37 + 19);
+      const isSmall = (seed % 10) < 5;
+      const pct = 73 + (seed % 18);
+
       sizeVal.textContent = isSmall ? "SMALL" : "BIG";
       rangeLabel.textContent = isSmall ? "0 - 4" : "5 - 9";
       probBar.style.width = pct + "%";
       probText.textContent = pct + "%";
 
       const pool = isSmall ? [0, 1, 2, 3, 4] : [5, 6, 7, 8, 9];
-      const firstIdx = Math.floor(Math.random() * pool.length);
-      let secondIdx = Math.floor(Math.random() * pool.length);
-      if (secondIdx === firstIdx) {
-        secondIdx = (firstIdx + 1) % pool.length;
-      }
-      num1.textContent = pool[firstIdx];
-      num2.textContent = pool[secondIdx];
-      periodVal.textContent = "#" + currentPeriod;
+      const firstIdx = seed % pool.length;
+      const secondIdx = (firstIdx + 2) % pool.length;
+      setDigits(pool[firstIdx], pool[secondIdx]);
     }
 
     function unlockPanel() {
@@ -1228,18 +929,23 @@
 
     refreshBtn.addEventListener("click", generateSignal);
 
-    // 30-second countdown loop
-    setInterval(() => {
-      const nowSec = Math.floor(Date.now() / 1000);
-      const rem = 30 - (nowSec % 30);
-      if (rem === 30) {
-        currentPeriod += 1;
-        if (isUnlocked) generateSignal();
-      }
+    // Real-time 30s clock & market period watcher
+    function tickClock() {
+      const rem = getSecondsRemaining();
       timerVal.textContent = rem < 10 ? "00:0" + rem : "00:" + rem;
-    }, 500);
 
-    // Drag + 3D Movement Support
+      const currentP = getCurrentMarketPeriod();
+      if (currentP !== lastSyncedPeriod) {
+        lastSyncedPeriod = currentP;
+        syncPeriodDisplay();
+        if (isUnlocked) generateSignal();
+      } else {
+        syncPeriodDisplay();
+      }
+    }
+    tickClock();
+    setInterval(tickClock, 250);
+
     let isDragging = false;
     let offsetX = 0;
     let offsetY = 0;
@@ -1250,12 +956,13 @@
       isDragging = true;
       lastX = clientX;
       lastY = clientY;
-      const rect = stage.getBoundingClientRect();
-      stage.style.left = rect.left + "px";
-      stage.style.top = rect.top + "px";
-      stage.style.right = "auto";
+      const rect = panel.getBoundingClientRect();
+      panel.style.left = rect.left + "px";
+      panel.style.top = rect.top + "px";
+      panel.style.right = "auto";
       offsetX = clientX - rect.left;
       offsetY = clientY - rect.top;
+      waveSurge = 2.0;
       apply3DTransform(1.03);
     }
 
@@ -1266,16 +973,16 @@
       lastX = clientX;
       lastY = clientY;
 
-      const maxX = window.innerWidth - stage.offsetWidth - 6;
-      const maxY = window.innerHeight - stage.offsetHeight - 6;
+      const maxX = window.innerWidth - panel.offsetWidth - 6;
+      const maxY = window.innerHeight - panel.offsetHeight - 6;
       const nextX = Math.max(6, Math.min(maxX, clientX - offsetX));
       const nextY = Math.max(6, Math.min(maxY, clientY - offsetY));
-      stage.style.left = nextX + "px";
-      stage.style.top = nextY + "px";
+      panel.style.left = nextX + "px";
+      panel.style.top = nextY + "px";
 
-      // 3D tilt based on drag movement direction
       tiltY = Math.max(-16, Math.min(16, dx * 2.2));
       tiltX = Math.max(-16, Math.min(16, -dy * 2.2));
+      waveSurge = Math.min(2.8, waveSurge + (Math.abs(dx) + Math.abs(dy)) * 0.03);
       apply3DTransform(1.03);
     }
 
