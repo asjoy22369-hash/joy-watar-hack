@@ -3,21 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>JOY VAI — WinGo 30S Panel</title>
+  <title>JOY VAI — WinGo 30S 3D Water Panel</title>
   <style>
     :root {
       --bg-page: #f5f7fa;
-      --card-white: #ffffff;
       --text-dark: #1f2937;
-      --text-muted: #6b7280;
-      --aqua-light: #e6fbff;
-      --aqua-mid: #7ee8fa;
-      --aqua-deep: #0097b2;
-      --aqua-teal: #06b6d4;
-      --coral-start: #ff7a6b;
-      --coral-end: #ff5e62;
-      --shadow-soft: 0 12px 30px rgba(15, 23, 42, 0.12);
-      --shadow-panel: 0 20px 45px rgba(0, 130, 160, 0.25);
     }
 
     * {
@@ -36,13 +26,13 @@
       position: relative;
     }
 
-    /* Background Mobile Portal Layout (Similar to Reference) */
+    /* Background Mobile Portal Layout */
     .portal-wrap {
       max-width: 480px;
       margin: 0 auto;
       min-height: 100vh;
       background: #f7f8fa;
-      padding-bottom: 105px;
+      padding-bottom: 110px;
       position: relative;
     }
 
@@ -62,23 +52,9 @@
       font-weight: 900;
       font-size: 20px;
       letter-spacing: -0.5px;
-      color: #ef4444;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .brand-logo span {
       background: linear-gradient(90deg, #ef4444, #f97316);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-    }
-
-    .header-meta {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
     }
 
     .id-pill {
@@ -87,6 +63,7 @@
       border: 1px solid #a5f3fc;
       padding: 4px 10px;
       border-radius: 999px;
+      font-size: 12px;
       font-weight: 700;
       cursor: pointer;
     }
@@ -212,6 +189,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      cursor: pointer;
     }
 
     .cat-original {
@@ -224,6 +202,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      cursor: pointer;
     }
 
     .section-title {
@@ -282,7 +261,6 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
     }
 
-    /* Bottom Navigation Bar */
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -328,7 +306,6 @@
       font-size: 18px;
     }
 
-    /* Bottom Floating Action Chips (JOY VAI & Site) */
     .floating-chips {
       position: fixed;
       bottom: 66px;
@@ -360,29 +337,60 @@
       color: #0369a1;
     }
 
-    /* Floating Water-Glass Panel */
-    .water-panel {
+    /* 3D Perspective Stage for Floating Water Panel */
+    .water-stage {
       position: fixed;
       top: 76px;
       right: 12px;
-      width: 255px;
+      width: 258px;
+      perspective: 950px;
+      z-index: 50;
+      user-select: none;
+    }
+
+    .water-panel {
+      width: 100%;
       border-radius: 22px;
       padding: 12px;
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      will-change: transform;
       background:
         repeating-linear-gradient(
           90deg,
-          rgba(255, 255, 255, 0.22) 0px,
-          rgba(255, 255, 255, 0.22) 6px,
+          rgba(255, 255, 255, 0.24) 0px,
+          rgba(255, 255, 255, 0.24) 6px,
           rgba(125, 211, 252, 0.18) 6px,
           rgba(125, 211, 252, 0.18) 12px
         ),
-        linear-gradient(160deg, #dff9ff 0%, #aeeeff 48%, #7be3fa 100%);
-      backdrop-filter: blur(12px);
-      border: 1.5px solid rgba(255, 255, 255, 0.85);
-      box-shadow: var(--shadow-panel);
-      z-index: 50;
-      user-select: none;
-      transition: transform 0.2s ease, opacity 0.2s ease;
+        linear-gradient(160deg, #dff9ff 0%, #aeeeff 48%, #67e8f9 100%);
+      backdrop-filter: blur(14px);
+      border: 1.5px solid rgba(255, 255, 255, 0.9);
+      box-shadow:
+        0 24px 48px rgba(2, 132, 199, 0.28),
+        inset 0 1px 2px rgba(255, 255, 255, 0.95);
+      transition: transform 0.14s ease-out, box-shadow 0.2s ease;
+    }
+
+    /* Dynamic 3D Specular Sheen on Panel */
+    .water-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(
+        circle at var(--sheen-x, 50%) var(--sheen-y, 20%),
+        rgba(255, 255, 255, 0.65) 0%,
+        rgba(255, 255, 255, 0.12) 38%,
+        transparent 70%
+      );
+      z-index: 2;
+    }
+
+    .water-panel > * {
+      position: relative;
+      z-index: 3;
     }
 
     .water-panel.minimized .panel-body {
@@ -395,6 +403,7 @@
       justify-content: space-between;
       cursor: grab;
       padding-bottom: 8px;
+      transform: translateZ(16px);
     }
 
     .panel-header:active {
@@ -427,14 +436,13 @@
       font-size: 12px;
       font-weight: 900;
       color: #0f172a;
-      letter-spacing: 0.2px;
     }
 
     .panel-title-group .sub {
       font-size: 9px;
       font-weight: 800;
       color: #0369a1;
-      letter-spacing: 0.6px;
+      letter-spacing: 0.5px;
     }
 
     .panel-controls {
@@ -448,7 +456,7 @@
       height: 22px;
       border-radius: 50%;
       border: none;
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.88);
       color: #0f172a;
       font-weight: 900;
       font-size: 12px;
@@ -458,13 +466,18 @@
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
     }
 
-    /* Lock View inside Panel */
+    /* Lock View */
     .lock-card {
-      background: rgba(255, 255, 255, 0.78);
+      background: rgba(255, 255, 255, 0.8);
       border-radius: 16px;
       padding: 16px 12px;
       text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.92);
+      transform: translateZ(10px);
+    }
+
+    .lock-card.hidden {
+      display: none;
     }
 
     .lock-icon-ring {
@@ -553,21 +566,18 @@
       min-height: 14px;
     }
 
-    /* Unlocked Prediction View inside Panel */
+    /* Unlocked View */
     .unlocked-view {
       display: none;
+      transform: translateZ(12px);
     }
 
     .unlocked-view.active {
       display: block;
     }
 
-    .lock-card.hidden {
-      display: none;
-    }
-
     .meta-strip {
-      background: rgba(255, 255, 255, 0.82);
+      background: rgba(255, 255, 255, 0.84);
       border-radius: 12px;
       padding: 8px;
       display: flex;
@@ -596,7 +606,6 @@
       border-radius: 999px;
       font-size: 11px;
       font-weight: 900;
-      letter-spacing: 0.4px;
     }
 
     .api-tag {
@@ -616,6 +625,8 @@
       color: #ffffff;
       margin-bottom: 8px;
       box-shadow: 0 6px 14px rgba(2, 132, 199, 0.25);
+      position: relative;
+      overflow: hidden;
     }
 
     .signal-top {
@@ -623,7 +634,6 @@
       justify-content: space-between;
       font-size: 9px;
       font-weight: 800;
-      opacity: 0.95;
     }
 
     .signal-main {
@@ -656,11 +666,12 @@
       margin-top: 3px;
     }
 
+    /* Probable 2 Numbers with Animated Water Inside Digits */
     .numbers-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 8px;
-      background: rgba(255, 255, 255, 0.78);
+      background: rgba(255, 255, 255, 0.82);
       border-radius: 14px;
       padding: 8px;
       text-align: center;
@@ -677,35 +688,94 @@
     }
 
     .num-ball {
-      width: 44px;
-      height: 44px;
+      width: 52px;
+      height: 52px;
       margin: 0 auto;
       border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, #ffffff, #bae6fd 65%, #38bdf8 100%);
+      background: radial-gradient(circle at 30% 25%, #ffffff, #e0f2fe 65%, #bae6fd 100%);
       border: 2px solid #7dd3fc;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-weight: 900;
-      color: #0f172a;
-      box-shadow: 0 4px 10px rgba(2, 132, 199, 0.2);
+      box-shadow:
+        0 6px 14px rgba(2, 132, 199, 0.24),
+        inset 0 2px 5px rgba(255, 255, 255, 0.9);
+      position: relative;
+      overflow: hidden;
     }
 
-    .num-ball .digit {
-      font-size: 16px;
+    /* Moving Liquid Water Clipped Inside the Digit */
+    .liquid-digit {
+      font-size: 28px;
+      font-weight: 950;
       line-height: 1;
+      display: inline-block;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.85) 0%, transparent 25%),
+        repeating-linear-gradient(
+          -25deg,
+          #0284c7 0px,
+          #06b6d4 8px,
+          #38bdf8 16px,
+          #0ea5e9 24px,
+          #0369a1 32px
+        );
+      background-size: 220% 220%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      filter: drop-shadow(0 2px 3px rgba(2, 132, 199, 0.35));
+      animation: waterFlowInside 2.6s linear infinite;
     }
 
-    .num-ball .sub-lbl {
+    .num-ball:nth-child(2) .liquid-digit {
+      animation-direction: reverse;
+      animation-duration: 3.1s;
+    }
+
+    @keyframes waterFlowInside {
+      0% {
+        background-position: 0% 50%;
+        transform: translateY(0px) scale(1);
+      }
+      50% {
+        background-position: 100% 65%;
+        transform: translateY(-1.5px) scale(1.04);
+      }
+      100% {
+        background-position: 200% 50%;
+        transform: translateY(0px) scale(1);
+      }
+    }
+
+    /* Subtle Water Ripple Overlay inside Ball */
+    .water-ripple {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 75%, rgba(56, 189, 248, 0.28), transparent 65%);
+      animation: ripplePulse 2.2s ease-in-out infinite;
+    }
+
+    @keyframes ripplePulse {
+      0%, 100% { transform: scale(0.92); opacity: 0.55; }
+      50% { transform: scale(1.12); opacity: 0.9; }
+    }
+
+    .sub-lbl {
       font-size: 7px;
+      font-weight: 900;
       color: #0369a1;
       margin-top: 1px;
+      position: relative;
+      z-index: 2;
     }
 
     .panel-footer-info {
       margin-top: 8px;
-      background: rgba(255, 255, 255, 0.82);
+      background: rgba(255, 255, 255, 0.85);
       border-radius: 10px;
       padding: 6px 8px;
       font-size: 9px;
@@ -727,7 +797,7 @@
       cursor: pointer;
     }
 
-    /* Info Modal for JOY VAI & Referral */
+    /* Info Modal */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -810,17 +880,11 @@
 <body>
 
   <div class="portal-wrap">
-    <!-- Top Bar -->
     <header class="top-header">
-      <div class="brand-logo">
-        <span>HGNICE</span>
-      </div>
-      <div class="header-meta">
-        <span class="id-pill" onclick="openRefModal()">ID: @BDT588</span>
-      </div>
+      <div class="brand-logo">HGNICE</div>
+      <span class="id-pill" onclick="openRefModal()">ID: @BDT588</span>
     </header>
 
-    <!-- Hero & Promo Section -->
     <div class="hero-grid">
       <div class="promo-banner">
         <span class="tag">HGNICE VIP</span>
@@ -839,27 +903,23 @@
       </div>
     </div>
 
-    <!-- Notice Strip -->
     <div class="notice-bar">
       <div class="notice-icon">🔊</div>
       <div>Attention!!! Welcome to <b>JOY VAI</b> panel — ID <b>@BDT588</b>.</div>
     </div>
 
-    <!-- Category Row 1 -->
     <div class="cat-row-3">
       <div class="cat-card cat-popular" onclick="goReferral()">🏆<br>Popular</div>
       <div class="cat-card cat-lottery" onclick="goReferral()">🎱<br>Lottery</div>
       <div class="cat-card cat-slots" onclick="goReferral()">🎰<br>Slots</div>
     </div>
 
-    <!-- Category Strip -->
     <div class="banner-strip">
       <div onclick="goReferral()" style="cursor:pointer;">⚽<br>Sports</div>
       <div onclick="goReferral()" style="cursor:pointer;">🎲<br>Casino</div>
       <div onclick="goReferral()" style="cursor:pointer;">🃏<br>Rummy</div>
     </div>
 
-    <!-- Category Row 2 -->
     <div class="cat-row-2">
       <div class="cat-fishing" onclick="goReferral()">
         <span>Fishing</span>
@@ -871,7 +931,6 @@
       </div>
     </div>
 
-    <!-- Lottery / Win Go Card -->
     <div class="section-title">Lottery</div>
     <div class="wingo-card">
       <h4>Win Go</h4>
@@ -881,7 +940,6 @@
       </button>
     </div>
 
-    <!-- Bottom Nav -->
     <nav class="bottom-nav">
       <div class="nav-item active" onclick="goReferral()">
         <span>🏠</span>
@@ -906,7 +964,7 @@
     </nav>
   </div>
 
-  <!-- Floating Bottom-Left Chips (JOY VAI & Site) -->
+  <!-- Bottom Floating Action Chips -->
   <div class="floating-chips">
     <button class="chip-btn primary-chip" onclick="openRefModal()">
       <span>◎</span>
@@ -918,104 +976,104 @@
     </a>
   </div>
 
-  <!-- Floating Water-Glass Panel -->
-  <aside class="water-panel" id="waterPanel">
-    <div class="panel-header" id="panelDragHandle">
-      <div class="panel-brand">
-        <div class="drop-badge">💧</div>
-        <div class="panel-title-group">
-          <div class="name">JOY VAI</div>
-          <div class="sub">WINGO 30S • @BDT588</div>
+  <!-- 3D Floating Water-Glass Panel -->
+  <div class="water-stage" id="waterStage">
+    <aside class="water-panel" id="waterPanel">
+      <div class="panel-header" id="panelDragHandle">
+        <div class="panel-brand">
+          <div class="drop-badge">💧</div>
+          <div class="panel-title-group">
+            <div class="name">JOY VAI</div>
+            <div class="sub">WINGO 30S • @BDT588</div>
+          </div>
+        </div>
+        <div class="panel-controls">
+          <button class="icon-circle-btn" id="lockToggleBtn" title="Lock / Unlock">🔒</button>
+          <button class="icon-circle-btn" id="minToggleBtn" title="Minimize">−</button>
         </div>
       </div>
-      <div class="panel-controls">
-        <button class="icon-circle-btn" id="lockToggleBtn" title="Lock / Unlock">🔒</button>
-        <button class="icon-circle-btn" id="minToggleBtn" title="Minimize">−</button>
-      </div>
-    </div>
 
-    <div class="panel-body">
-      <!-- Lock Screen -->
-      <div class="lock-card" id="lockCard">
-        <div class="lock-icon-ring">🔒</div>
-        <div class="lock-title">WATERFALL LOCK</div>
-        <div class="lock-sub">Enter access key to unlock panel</div>
+      <div class="panel-body">
+        <!-- Lock Screen -->
+        <div class="lock-card" id="lockCard">
+          <div class="lock-icon-ring">🔒</div>
+          <div class="lock-title">WATERFALL LOCK</div>
+          <div class="lock-sub">Enter access key to unlock panel</div>
 
-        <div class="pass-input-wrap">
-          <input
-            type="password"
-            class="pass-input"
-            id="passwordInput"
-            placeholder="Password..."
-            autocomplete="off"
-          />
-          <button type="button" class="eye-toggle" id="eyeBtn" title="Show/Hide">👁️</button>
+          <div class="pass-input-wrap">
+            <input
+              type="password"
+              class="pass-input"
+              id="passwordInput"
+              placeholder="Password..."
+              autocomplete="off"
+            />
+            <button type="button" class="eye-toggle" id="eyeBtn" title="Show/Hide">👁️</button>
+          </div>
+
+          <button type="button" class="unlock-btn" id="unlockBtn">
+            <span>🔓</span>
+            <span>UNLOCK PANEL</span>
+          </button>
+
+          <div class="error-msg" id="errorMsg"></div>
         </div>
 
-        <button type="button" class="unlock-btn" id="unlockBtn">
-          <span>🔓</span>
-          <span>UNLOCK PANEL</span>
-        </button>
-
-        <div class="error-msg" id="errorMsg"></div>
-      </div>
-
-      <!-- Unlocked Signal View -->
-      <div class="unlocked-view" id="unlockedView">
-        <div class="meta-strip">
-          <div class="period-box">
-            <div class="lbl">PERIOD</div>
-            <div class="val" id="periodVal">#51789</div>
+        <!-- Unlocked Signal View -->
+        <div class="unlocked-view" id="unlockedView">
+          <div class="meta-strip">
+            <div class="period-box">
+              <div class="lbl">PERIOD</div>
+              <div class="val" id="periodVal">#51789</div>
+            </div>
+            <div class="timer-pill" id="timerVal">00:30</div>
+            <div class="api-tag" id="refreshBtn" title="Refresh Signal">↻ API</div>
           </div>
-          <div class="timer-pill" id="timerVal">00:30</div>
-          <div class="api-tag" id="refreshBtn" title="Refresh Signal">↻ API</div>
-        </div>
 
-        <div class="signal-box">
-          <div class="signal-top">
-            <span>💧 SIZE</span>
-            <span id="rangeLabel">0 - 4</span>
+          <div class="signal-box">
+            <div class="signal-top">
+              <span>💧 SIZE</span>
+              <span id="rangeLabel">0 - 4</span>
+            </div>
+            <div class="signal-main" id="sizeVal">SMALL</div>
+            <div class="prob-bar-wrap">
+              <div class="prob-bar-fill" id="probBar" style="width: 78%;"></div>
+            </div>
+            <div class="prob-pct" id="probText">78%</div>
           </div>
-          <div class="signal-main" id="sizeVal">SMALL</div>
-          <div class="prob-bar-wrap">
-            <div class="prob-bar-fill" id="probBar" style="width: 78%;"></div>
-          </div>
-          <div class="prob-pct" id="probText">78%</div>
-        </div>
 
-        <div class="numbers-grid">
-          <div class="num-head">
-            <span>PROBABLE 2 NUMBERS</span>
-            <span>WAVE ZIGZAG</span>
-          </div>
-          <div>
+          <div class="numbers-grid">
+            <div class="num-head">
+              <span>PROBABLE 2 NUMBERS</span>
+              <span>WAVE ZIGZAG</span>
+            </div>
             <div class="num-ball">
-              <span class="digit" id="num1">2</span>
+              <div class="water-ripple"></div>
+              <span class="liquid-digit" id="num1">2</span>
               <span class="sub-lbl">P1</span>
             </div>
-          </div>
-          <div>
             <div class="num-ball">
-              <span class="digit" id="num2">4</span>
+              <div class="water-ripple"></div>
+              <span class="liquid-digit" id="num2">4</span>
               <span class="sub-lbl">P2</span>
             </div>
           </div>
-        </div>
 
-        <div class="panel-footer-info">
-          <span>ID: @BDT588</span>
-          <button class="mini-link-btn" onclick="openRefModal()">Refer</button>
+          <div class="panel-footer-info">
+            <span>ID: @BDT588</span>
+            <button class="mini-link-btn" onclick="openRefModal()">Refer</button>
+          </div>
         </div>
       </div>
-    </div>
-  </aside>
+    </aside>
+  </div>
 
   <!-- Referral & JOY VAI Modal -->
   <div class="modal-backdrop" id="refModal">
     <div class="modal-card">
       <h3>JOY VAI — Official Info</h3>
       <p><b>Name:</b> JOY VAI<br><b>User ID:</b> @BDT588</p>
-      <div class="ref-box" id="refLinkText">https://hgnice.bet/#/register?invitationCode=376851951983</div>
+      <div class="ref-box">https://hgnice.bet/#/register?invitationCode=376851951983</div>
       <div class="modal-actions">
         <button class="btn-copy" id="copyRefBtn">Copy Link</button>
         <button class="btn-close" id="closeModalBtn">Close</button>
@@ -1025,9 +1083,9 @@
 
   <script>
     const REFERRAL_URL = "https://hgnice.bet/#/register?invitationCode=376851951983";
-    // Accepted passwords (case-insensitive)
     const VALID_KEYS = ["JOY-WATER", "KAMRUL-WATER", "JOYVAI", "BDT588"];
 
+    const stage = document.getElementById("waterStage");
     const panel = document.getElementById("waterPanel");
     const dragHandle = document.getElementById("panelDragHandle");
     const lockCard = document.getElementById("lockCard");
@@ -1055,6 +1113,38 @@
 
     let isUnlocked = false;
     let currentPeriod = 51789;
+    let tiltX = 0;
+    let tiltY = 0;
+
+    function apply3DTransform(extraScale = 1) {
+      panel.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(${extraScale})`;
+    }
+
+    function updateTiltFromPoint(clientX, clientY) {
+      const rect = panel.getBoundingClientRect();
+      const nx = ((clientX - rect.left) / rect.width) * 2 - 1;  // -1 to 1
+      const ny = ((clientY - rect.top) / rect.height) * 2 - 1;  // -1 to 1
+      tiltY = Math.max(-14, Math.min(14, nx * 13));
+      tiltX = Math.max(-14, Math.min(14, -ny * 13));
+      panel.style.setProperty("--sheen-x", `${Math.max(0, Math.min(100, (nx + 1) * 50))}%`);
+      panel.style.setProperty("--sheen-y", `${Math.max(0, Math.min(100, (ny + 1) * 50))}%`);
+      apply3DTransform(1.02);
+    }
+
+    function resetTilt() {
+      tiltX = 0;
+      tiltY = 0;
+      panel.style.setProperty("--sheen-x", "50%");
+      panel.style.setProperty("--sheen-y", "20%");
+      apply3DTransform(1);
+    }
+
+    panel.addEventListener("mousemove", (e) => {
+      if (!isDragging) updateTiltFromPoint(e.clientX, e.clientY);
+    });
+    panel.addEventListener("mouseleave", () => {
+      if (!isDragging) resetTilt();
+    });
 
     function goReferral() {
       window.open(REFERRAL_URL, "_blank", "noopener,noreferrer");
@@ -1064,10 +1154,7 @@
       refModal.classList.add("open");
     }
 
-    closeModalBtn.addEventListener("click", () => {
-      refModal.classList.remove("open");
-    });
-
+    closeModalBtn.addEventListener("click", () => refModal.classList.remove("open"));
     refModal.addEventListener("click", (e) => {
       if (e.target === refModal) refModal.classList.remove("open");
     });
@@ -1088,7 +1175,7 @@
 
     function generateSignal() {
       const isSmall = Math.random() > 0.45;
-      const pct = Math.floor(Math.random() * 19) + 72; // 72% - 90%
+      const pct = Math.floor(Math.random() * 19) + 72;
       sizeVal.textContent = isSmall ? "SMALL" : "BIG";
       rangeLabel.textContent = isSmall ? "0 - 4" : "5 - 9";
       probBar.style.width = pct + "%";
@@ -1139,9 +1226,7 @@
       minToggleBtn.textContent = panel.classList.contains("minimized") ? "+" : "−";
     });
 
-    refreshBtn.addEventListener("click", () => {
-      generateSignal();
-    });
+    refreshBtn.addEventListener("click", generateSignal);
 
     // 30-second countdown loop
     setInterval(() => {
@@ -1151,37 +1236,53 @@
         currentPeriod += 1;
         if (isUnlocked) generateSignal();
       }
-      const formatted = rem < 10 ? "00:0" + rem : "00:" + rem;
-      timerVal.textContent = formatted;
+      timerVal.textContent = rem < 10 ? "00:0" + rem : "00:" + rem;
     }, 500);
 
-    // Drag support for touch & mouse
+    // Drag + 3D Movement Support
     let isDragging = false;
     let offsetX = 0;
     let offsetY = 0;
+    let lastX = 0;
+    let lastY = 0;
 
     function startDrag(clientX, clientY) {
       isDragging = true;
-      const rect = panel.getBoundingClientRect();
-      panel.style.left = rect.left + "px";
-      panel.style.top = rect.top + "px";
-      panel.style.right = "auto";
+      lastX = clientX;
+      lastY = clientY;
+      const rect = stage.getBoundingClientRect();
+      stage.style.left = rect.left + "px";
+      stage.style.top = rect.top + "px";
+      stage.style.right = "auto";
       offsetX = clientX - rect.left;
       offsetY = clientY - rect.top;
+      apply3DTransform(1.03);
     }
 
     function moveDrag(clientX, clientY) {
       if (!isDragging) return;
-      const maxX = window.innerWidth - panel.offsetWidth - 8;
-      const maxY = window.innerHeight - panel.offsetHeight - 8;
-      const nextX = Math.max(8, Math.min(maxX, clientX - offsetX));
-      const nextY = Math.max(8, Math.min(maxY, clientY - offsetY));
-      panel.style.left = nextX + "px";
-      panel.style.top = nextY + "px";
+      const dx = clientX - lastX;
+      const dy = clientY - lastY;
+      lastX = clientX;
+      lastY = clientY;
+
+      const maxX = window.innerWidth - stage.offsetWidth - 6;
+      const maxY = window.innerHeight - stage.offsetHeight - 6;
+      const nextX = Math.max(6, Math.min(maxX, clientX - offsetX));
+      const nextY = Math.max(6, Math.min(maxY, clientY - offsetY));
+      stage.style.left = nextX + "px";
+      stage.style.top = nextY + "px";
+
+      // 3D tilt based on drag movement direction
+      tiltY = Math.max(-16, Math.min(16, dx * 2.2));
+      tiltX = Math.max(-16, Math.min(16, -dy * 2.2));
+      apply3DTransform(1.03);
     }
 
     function endDrag() {
+      if (!isDragging) return;
       isDragging = false;
+      resetTilt();
     }
 
     dragHandle.addEventListener("mousedown", (e) => {
