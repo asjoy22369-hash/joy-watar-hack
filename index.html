@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>JOY VAI — WinGo 30S Panel</title>
+  <style>
+    :root {
+      --bg-page: #f5f7fa;
+      --card-white: #ffffff;
+      --text-dark: #1f2937;
+      --text-muted: #6b7280;
+      --aqua-light: #e6fbff;
+      --aqua-mid: #7ee8fa;
+      --aqua-deep: #0097b2;
+      --aqua-teal: #06b6d4;
+      --coral-start: #ff7a6b;
+      --coral-end: #ff5e62;
+      --shadow-soft: 0 12px 30px rgba(15, 23, 42, 0.12);
+      --shadow-panel: 0 20px 45px rgba(0, 130, 160, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: var(--bg-page);
+      color: var(--text-dark);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Background Mobile Portal Layout (Similar to Reference) */
+    .portal-wrap {
+      max-width: 480px;
+      margin: 0 auto;
+      min-height: 100vh;
+      background: #f7f8fa;
+      padding-bottom: 105px;
+      position: relative;
+    }
+
+    .top-header {
+      background: #ffffff;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #eef0f4;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .brand-logo {
+      font-weight: 900;
+      font-size: 20px;
+      letter-spacing: -0.5px;
+      color: #ef4444;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .brand-logo span {
+      background: linear-gradient(90deg, #ef4444, #f97316);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .header-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+    }
+
+    .id-pill {
+      background: #ecfeff;
+      color: #0e7490;
+      border: 1px solid #a5f3fc;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 12px;
+      padding: 12px 14px 6px;
+    }
+
+    .promo-banner {
+      background: linear-gradient(135deg, #b91c1c, #7f1d1d);
+      border-radius: 14px;
+      padding: 14px;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 140px;
+      box-shadow: 0 6px 16px rgba(185, 28, 28, 0.2);
+    }
+
+    .promo-banner .tag {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      background: rgba(255, 255, 255, 0.18);
+      padding: 3px 8px;
+      border-radius: 6px;
+      width: fit-content;
+    }
+
+    .promo-banner h3 {
+      font-size: 18px;
+      font-weight: 900;
+      line-height: 1.15;
+      color: #fde047;
+      margin-top: 8px;
+    }
+
+    .promo-banner p {
+      font-size: 11px;
+      color: #fecaca;
+      margin-top: 6px;
+    }
+
+    .notice-bar {
+      margin: 8px 14px;
+      background: #ffffff;
+      border-radius: 999px;
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      font-size: 12px;
+      color: #374151;
+    }
+
+    .notice-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #fee2e2;
+      color: #ef4444;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    .cat-row-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      padding: 6px 14px;
+    }
+
+    .cat-card {
+      border-radius: 14px;
+      padding: 12px 8px;
+      text-align: center;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 13px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+      cursor: pointer;
+    }
+
+    .cat-popular { background: linear-gradient(145deg, #60a5fa, #2563eb); }
+    .cat-lottery { background: linear-gradient(145deg, #c084fc, #7e22ce); }
+    .cat-slots { background: linear-gradient(145deg, #38bdf8, #0284c7); }
+
+    .banner-strip {
+      margin: 10px 14px;
+      border-radius: 16px;
+      padding: 14px;
+      background: linear-gradient(135deg, #fb923c, #f43f5e);
+      color: #fff;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      text-align: center;
+      font-weight: 800;
+      font-size: 13px;
+      box-shadow: 0 8px 18px rgba(244, 63, 94, 0.2);
+    }
+
+    .cat-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 4px 14px;
+    }
+
+    .cat-fishing {
+      background: linear-gradient(135deg, #fbbf24, #f97316);
+      border-radius: 14px;
+      padding: 14px;
+      color: #fff;
+      font-weight: 800;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cat-original {
+      background: linear-gradient(135deg, #f472b6, #ec4899);
+      border-radius: 14px;
+      padding: 14px;
+      color: #fff;
+      font-weight: 800;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-title {
+      padding: 14px 14px 6px;
+      font-size: 15px;
+      font-weight: 800;
+      color: #111827;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .section-title::before {
+      content: "";
+      width: 4px;
+      height: 16px;
+      border-radius: 4px;
+      background: #ef4444;
+    }
+
+    .wingo-card {
+      margin: 4px 14px 12px;
+      border-radius: 18px;
+      padding: 16px;
+      background: linear-gradient(135deg, #ff8a7a, #ff6b6b);
+      color: #ffffff;
+      box-shadow: 0 10px 22px rgba(255, 107, 107, 0.25);
+    }
+
+    .wingo-card h4 {
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .wingo-card p {
+      font-size: 12px;
+      opacity: 0.95;
+      margin-top: 3px;
+    }
+
+    .desktop-btn {
+      margin-top: 12px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.92);
+      color: #1f2937;
+      border: none;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-weight: 800;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Bottom Navigation Bar */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 480px;
+      background: #ffffff;
+      border-top: 1px solid #e5e7eb;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      align-items: center;
+      padding: 8px 4px 10px;
+      z-index: 20;
+    }
+
+    .nav-item {
+      text-align: center;
+      font-size: 10px;
+      font-weight: 700;
+      color: #6b7280;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      cursor: pointer;
+    }
+
+    .nav-item.active {
+      color: #ef4444;
+    }
+
+    .nav-center-gem {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff7e67, #ff4b5c);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      margin: -18px auto 2px;
+      box-shadow: 0 6px 14px rgba(255, 75, 92, 0.35);
+      font-size: 18px;
+    }
+
+    /* Bottom Floating Action Chips (JOY VAI & Site) */
+    .floating-chips {
+      position: fixed;
+      bottom: 66px;
+      left: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 45;
+    }
+
+    .chip-btn {
+      background: #ffffff;
+      color: #0f172a;
+      border: 1px solid #dbeafe;
+      border-radius: 10px;
+      padding: 7px 12px;
+      font-size: 12px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.14);
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .chip-btn.primary-chip {
+      border-color: #67e8f9;
+      color: #0369a1;
+    }
+
+    /* Floating Water-Glass Panel */
+    .water-panel {
+      position: fixed;
+      top: 76px;
+      right: 12px;
+      width: 255px;
+      border-radius: 22px;
+      padding: 12px;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.22) 0px,
+          rgba(255, 255, 255, 0.22) 6px,
+          rgba(125, 211, 252, 0.18) 6px,
+          rgba(125, 211, 252, 0.18) 12px
+        ),
+        linear-gradient(160deg, #dff9ff 0%, #aeeeff 48%, #7be3fa 100%);
+      backdrop-filter: blur(12px);
+      border: 1.5px solid rgba(255, 255, 255, 0.85);
+      box-shadow: var(--shadow-panel);
+      z-index: 50;
+      user-select: none;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .water-panel.minimized .panel-body {
+      display: none;
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: grab;
+      padding-bottom: 8px;
+    }
+
+    .panel-header:active {
+      cursor: grabbing;
+    }
+
+    .panel-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .drop-badge {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #22d3ee, #0284c7);
+      color: #ffffff;
+      display: grid;
+      place-items: center;
+      font-size: 13px;
+      box-shadow: 0 3px 8px rgba(2, 132, 199, 0.35);
+    }
+
+    .panel-title-group {
+      line-height: 1.1;
+    }
+
+    .panel-title-group .name {
+      font-size: 12px;
+      font-weight: 900;
+      color: #0f172a;
+      letter-spacing: 0.2px;
+    }
+
+    .panel-title-group .sub {
+      font-size: 9px;
+      font-weight: 800;
+      color: #0369a1;
+      letter-spacing: 0.6px;
+    }
+
+    .panel-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .icon-circle-btn {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255, 255, 255, 0.85);
+      color: #0f172a;
+      font-weight: 900;
+      font-size: 12px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Lock View inside Panel */
+    .lock-card {
+      background: rgba(255, 255, 255, 0.78);
+      border-radius: 16px;
+      padding: 16px 12px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.9);
+    }
+
+    .lock-icon-ring {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      margin: 0 auto 10px;
+      background: linear-gradient(145deg, #7dd3fc, #0284c7);
+      color: #ffffff;
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+      box-shadow: 0 6px 14px rgba(2, 132, 199, 0.28);
+    }
+
+    .lock-title {
+      font-size: 13px;
+      font-weight: 900;
+      color: #0f172a;
+      letter-spacing: 0.4px;
+    }
+
+    .lock-sub {
+      font-size: 10px;
+      color: #475569;
+      margin-top: 2px;
+      margin-bottom: 12px;
+    }
+
+    .pass-input-wrap {
+      position: relative;
+      margin-bottom: 10px;
+    }
+
+    .pass-input {
+      width: 100%;
+      padding: 9px 32px 9px 11px;
+      border-radius: 10px;
+      border: 1.5px solid #67e8f9;
+      background: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      color: #0f172a;
+      outline: none;
+    }
+
+    .pass-input:focus {
+      border-color: #0284c7;
+    }
+
+    .eye-toggle {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #64748b;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .unlock-btn {
+      width: 100%;
+      padding: 9px 12px;
+      border-radius: 10px;
+      border: none;
+      background: linear-gradient(90deg, #06b6d4, #0d9488);
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      box-shadow: 0 6px 14px rgba(13, 148, 136, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .error-msg {
+      color: #dc2626;
+      font-size: 10px;
+      font-weight: 700;
+      margin-top: 7px;
+      min-height: 14px;
+    }
+
+    /* Unlocked Prediction View inside Panel */
+    .unlocked-view {
+      display: none;
+    }
+
+    .unlocked-view.active {
+      display: block;
+    }
+
+    .lock-card.hidden {
+      display: none;
+    }
+
+    .meta-strip {
+      background: rgba(255, 255, 255, 0.82);
+      border-radius: 12px;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .period-box .lbl {
+      font-size: 8px;
+      font-weight: 800;
+      color: #64748b;
+    }
+
+    .period-box .val {
+      font-size: 11px;
+      font-weight: 900;
+      color: #0f172a;
+    }
+
+    .timer-pill {
+      background: linear-gradient(90deg, #fb7185, #ef4444);
+      color: #ffffff;
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.4px;
+    }
+
+    .api-tag {
+      background: #e0f2fe;
+      color: #0369a1;
+      font-size: 9px;
+      font-weight: 900;
+      padding: 4px 6px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .signal-box {
+      background: linear-gradient(135deg, #2dd4bf, #0284c7);
+      border-radius: 14px;
+      padding: 11px;
+      color: #ffffff;
+      margin-bottom: 8px;
+      box-shadow: 0 6px 14px rgba(2, 132, 199, 0.25);
+    }
+
+    .signal-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 9px;
+      font-weight: 800;
+      opacity: 0.95;
+    }
+
+    .signal-main {
+      font-size: 22px;
+      font-weight: 900;
+      text-align: center;
+      letter-spacing: 1px;
+      margin: 5px 0;
+    }
+
+    .prob-bar-wrap {
+      background: rgba(255, 255, 255, 0.3);
+      height: 6px;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 4px;
+    }
+
+    .prob-bar-fill {
+      height: 100%;
+      background: #ffffff;
+      border-radius: 999px;
+      transition: width 0.4s ease;
+    }
+
+    .prob-pct {
+      text-align: right;
+      font-size: 9px;
+      font-weight: 900;
+      margin-top: 3px;
+    }
+
+    .numbers-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.78);
+      border-radius: 14px;
+      padding: 8px;
+      text-align: center;
+    }
+
+    .num-head {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: space-between;
+      font-size: 8px;
+      font-weight: 900;
+      color: #0369a1;
+      margin-bottom: 2px;
+    }
+
+    .num-ball {
+      width: 44px;
+      height: 44px;
+      margin: 0 auto;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #ffffff, #bae6fd 65%, #38bdf8 100%);
+      border: 2px solid #7dd3fc;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      color: #0f172a;
+      box-shadow: 0 4px 10px rgba(2, 132, 199, 0.2);
+    }
+
+    .num-ball .digit {
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    .num-ball .sub-lbl {
+      font-size: 7px;
+      color: #0369a1;
+      margin-top: 1px;
+    }
+
+    .panel-footer-info {
+      margin-top: 8px;
+      background: rgba(255, 255, 255, 0.82);
+      border-radius: 10px;
+      padding: 6px 8px;
+      font-size: 9px;
+      font-weight: 800;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mini-link-btn {
+      background: #0284c7;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 3px 7px;
+      font-size: 9px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    /* Info Modal for JOY VAI & Referral */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 100;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      border-radius: 18px;
+      width: 100%;
+      max-width: 360px;
+      padding: 18px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .modal-card h3 {
+      font-size: 16px;
+      font-weight: 900;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+
+    .modal-card p {
+      font-size: 12px;
+      color: #475569;
+      margin-bottom: 12px;
+      line-height: 1.45;
+    }
+
+    .ref-box {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 9px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #0f172a;
+      word-break: break-all;
+      margin-bottom: 10px;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-copy {
+      flex: 1;
+      background: #0284c7;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 10px;
+      font-weight: 800;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .btn-close {
+      background: #e2e8f0;
+      color: #1e293b;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-weight: 800;
+      font-size: 12px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="portal-wrap">
+    <!-- Top Bar -->
+    <header class="top-header">
+      <div class="brand-logo">
+        <span>HGNICE</span>
+      </div>
+      <div class="header-meta">
+        <span class="id-pill" onclick="openRefModal()">ID: @BDT588</span>
+      </div>
+    </header>
+
+    <!-- Hero & Promo Section -->
+    <div class="hero-grid">
+      <div class="promo-banner">
+        <span class="tag">HGNICE VIP</span>
+        <div>
+          <h3>JOY VAI<br>SPECIAL</h3>
+          <p>Official Partner @BDT588</p>
+        </div>
+      </div>
+      <div style="background:#fff;border-radius:14px;padding:12px;display:flex;flex-direction:column;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.04);">
+        <div style="font-size:11px;font-weight:800;color:#0284c7;margin-bottom:4px;">ACTIVE PARTNER</div>
+        <div style="font-size:15px;font-weight:900;color:#111827;">JOY VAI</div>
+        <div style="font-size:11px;color:#4b5563;margin-top:2px;">ID: <b>@BDT588</b></div>
+        <button onclick="openRefModal()" style="margin-top:10px;background:#0ea5e9;color:#fff;border:none;border-radius:8px;padding:7px;font-size:11px;font-weight:800;cursor:pointer;">
+          Referral Link
+        </button>
+      </div>
+    </div>
+
+    <!-- Notice Strip -->
+    <div class="notice-bar">
+      <div class="notice-icon">🔊</div>
+      <div>Attention!!! Welcome to <b>JOY VAI</b> panel — ID <b>@BDT588</b>.</div>
+    </div>
+
+    <!-- Category Row 1 -->
+    <div class="cat-row-3">
+      <div class="cat-card cat-popular" onclick="goReferral()">🏆<br>Popular</div>
+      <div class="cat-card cat-lottery" onclick="goReferral()">🎱<br>Lottery</div>
+      <div class="cat-card cat-slots" onclick="goReferral()">🎰<br>Slots</div>
+    </div>
+
+    <!-- Category Strip -->
+    <div class="banner-strip">
+      <div onclick="goReferral()" style="cursor:pointer;">⚽<br>Sports</div>
+      <div onclick="goReferral()" style="cursor:pointer;">🎲<br>Casino</div>
+      <div onclick="goReferral()" style="cursor:pointer;">🃏<br>Rummy</div>
+    </div>
+
+    <!-- Category Row 2 -->
+    <div class="cat-row-2">
+      <div class="cat-fishing" onclick="goReferral()">
+        <span>Fishing</span>
+        <span>🦈</span>
+      </div>
+      <div class="cat-original" onclick="goReferral()">
+        <span>Original</span>
+        <span>✈️</span>
+      </div>
+    </div>
+
+    <!-- Lottery / Win Go Card -->
+    <div class="section-title">Lottery</div>
+    <div class="wingo-card">
+      <h4>Win Go</h4>
+      <p>Guess Number • Green/Red/Violet to win</p>
+      <button class="desktop-btn" onclick="goReferral()">
+        <span>🔗</span> Join via JOY VAI Referral
+      </button>
+    </div>
+
+    <!-- Bottom Nav -->
+    <nav class="bottom-nav">
+      <div class="nav-item active" onclick="goReferral()">
+        <span>🏠</span>
+        <span>Home</span>
+      </div>
+      <div class="nav-item" onclick="goReferral()">
+        <span>🎁</span>
+        <span>Activity</span>
+      </div>
+      <div class="nav-item" onclick="openRefModal()">
+        <div class="nav-center-gem">💎</div>
+        <span>Promotion</span>
+      </div>
+      <div class="nav-item" onclick="goReferral()">
+        <span>👛</span>
+        <span>Wallet</span>
+      </div>
+      <div class="nav-item" onclick="openRefModal()">
+        <span>👤</span>
+        <span>Account</span>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Floating Bottom-Left Chips (JOY VAI & Site) -->
+  <div class="floating-chips">
+    <button class="chip-btn primary-chip" onclick="openRefModal()">
+      <span>◎</span>
+      <span>JOY VAI</span>
+    </button>
+    <a class="chip-btn" href="https://hgnice.bet/#/register?invitationCode=376851951983" target="_blank" rel="noopener noreferrer">
+      <span>↗</span>
+      <span>Site</span>
+    </a>
+  </div>
+
+  <!-- Floating Water-Glass Panel -->
+  <aside class="water-panel" id="waterPanel">
+    <div class="panel-header" id="panelDragHandle">
+      <div class="panel-brand">
+        <div class="drop-badge">💧</div>
+        <div class="panel-title-group">
+          <div class="name">JOY VAI</div>
+          <div class="sub">WINGO 30S • @BDT588</div>
+        </div>
+      </div>
+      <div class="panel-controls">
+        <button class="icon-circle-btn" id="lockToggleBtn" title="Lock / Unlock">🔒</button>
+        <button class="icon-circle-btn" id="minToggleBtn" title="Minimize">−</button>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <!-- Lock Screen -->
+      <div class="lock-card" id="lockCard">
+        <div class="lock-icon-ring">🔒</div>
+        <div class="lock-title">WATERFALL LOCK</div>
+        <div class="lock-sub">Enter access key to unlock panel</div>
+
+        <div class="pass-input-wrap">
+          <input
+            type="password"
+            class="pass-input"
+            id="passwordInput"
+            placeholder="Password..."
+            autocomplete="off"
+          />
+          <button type="button" class="eye-toggle" id="eyeBtn" title="Show/Hide">👁️</button>
+        </div>
+
+        <button type="button" class="unlock-btn" id="unlockBtn">
+          <span>🔓</span>
+          <span>UNLOCK PANEL</span>
+        </button>
+
+        <div class="error-msg" id="errorMsg"></div>
+      </div>
+
+      <!-- Unlocked Signal View -->
+      <div class="unlocked-view" id="unlockedView">
+        <div class="meta-strip">
+          <div class="period-box">
+            <div class="lbl">PERIOD</div>
+            <div class="val" id="periodVal">#51789</div>
+          </div>
+          <div class="timer-pill" id="timerVal">00:30</div>
+          <div class="api-tag" id="refreshBtn" title="Refresh Signal">↻ API</div>
+        </div>
+
+        <div class="signal-box">
+          <div class="signal-top">
+            <span>💧 SIZE</span>
+            <span id="rangeLabel">0 - 4</span>
+          </div>
+          <div class="signal-main" id="sizeVal">SMALL</div>
+          <div class="prob-bar-wrap">
+            <div class="prob-bar-fill" id="probBar" style="width: 78%;"></div>
+          </div>
+          <div class="prob-pct" id="probText">78%</div>
+        </div>
+
+        <div class="numbers-grid">
+          <div class="num-head">
+            <span>PROBABLE 2 NUMBERS</span>
+            <span>WAVE ZIGZAG</span>
+          </div>
+          <div>
+            <div class="num-ball">
+              <span class="digit" id="num1">2</span>
+              <span class="sub-lbl">P1</span>
+            </div>
+          </div>
+          <div>
+            <div class="num-ball">
+              <span class="digit" id="num2">4</span>
+              <span class="sub-lbl">P2</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-footer-info">
+          <span>ID: @BDT588</span>
+          <button class="mini-link-btn" onclick="openRefModal()">Refer</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Referral & JOY VAI Modal -->
+  <div class="modal-backdrop" id="refModal">
+    <div class="modal-card">
+      <h3>JOY VAI — Official Info</h3>
+      <p><b>Name:</b> JOY VAI<br><b>User ID:</b> @BDT588</p>
+      <div class="ref-box" id="refLinkText">https://hgnice.bet/#/register?invitationCode=376851951983</div>
+      <div class="modal-actions">
+        <button class="btn-copy" id="copyRefBtn">Copy Link</button>
+        <button class="btn-close" id="closeModalBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const REFERRAL_URL = "https://hgnice.bet/#/register?invitationCode=376851951983";
+    // Accepted passwords (case-insensitive)
+    const VALID_KEYS = ["JOY-WATER", "KAMRUL-WATER", "JOYVAI", "BDT588"];
+
+    const panel = document.getElementById("waterPanel");
+    const dragHandle = document.getElementById("panelDragHandle");
+    const lockCard = document.getElementById("lockCard");
+    const unlockedView = document.getElementById("unlockedView");
+    const passInput = document.getElementById("passwordInput");
+    const eyeBtn = document.getElementById("eyeBtn");
+    const unlockBtn = document.getElementById("unlockBtn");
+    const errorMsg = document.getElementById("errorMsg");
+    const lockToggleBtn = document.getElementById("lockToggleBtn");
+    const minToggleBtn = document.getElementById("minToggleBtn");
+    const refreshBtn = document.getElementById("refreshBtn");
+
+    const periodVal = document.getElementById("periodVal");
+    const timerVal = document.getElementById("timerVal");
+    const sizeVal = document.getElementById("sizeVal");
+    const rangeLabel = document.getElementById("rangeLabel");
+    const probBar = document.getElementById("probBar");
+    const probText = document.getElementById("probText");
+    const num1 = document.getElementById("num1");
+    const num2 = document.getElementById("num2");
+
+    const refModal = document.getElementById("refModal");
+    const copyRefBtn = document.getElementById("copyRefBtn");
+    const closeModalBtn = document.getElementById("closeModalBtn");
+
+    let isUnlocked = false;
+    let currentPeriod = 51789;
+
+    function goReferral() {
+      window.open(REFERRAL_URL, "_blank", "noopener,noreferrer");
+    }
+
+    function openRefModal() {
+      refModal.classList.add("open");
+    }
+
+    closeModalBtn.addEventListener("click", () => {
+      refModal.classList.remove("open");
+    });
+
+    refModal.addEventListener("click", (e) => {
+      if (e.target === refModal) refModal.classList.remove("open");
+    });
+
+    copyRefBtn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(REFERRAL_URL);
+        copyRefBtn.textContent = "Copied!";
+        setTimeout(() => (copyRefBtn.textContent = "Copy Link"), 1500);
+      } catch {
+        copyRefBtn.textContent = "Ready";
+      }
+    });
+
+    eyeBtn.addEventListener("click", () => {
+      passInput.type = passInput.type === "password" ? "text" : "password";
+    });
+
+    function generateSignal() {
+      const isSmall = Math.random() > 0.45;
+      const pct = Math.floor(Math.random() * 19) + 72; // 72% - 90%
+      sizeVal.textContent = isSmall ? "SMALL" : "BIG";
+      rangeLabel.textContent = isSmall ? "0 - 4" : "5 - 9";
+      probBar.style.width = pct + "%";
+      probText.textContent = pct + "%";
+
+      const pool = isSmall ? [0, 1, 2, 3, 4] : [5, 6, 7, 8, 9];
+      const firstIdx = Math.floor(Math.random() * pool.length);
+      let secondIdx = Math.floor(Math.random() * pool.length);
+      if (secondIdx === firstIdx) {
+        secondIdx = (firstIdx + 1) % pool.length;
+      }
+      num1.textContent = pool[firstIdx];
+      num2.textContent = pool[secondIdx];
+      periodVal.textContent = "#" + currentPeriod;
+    }
+
+    function unlockPanel() {
+      const entered = passInput.value.trim().toUpperCase();
+      if (VALID_KEYS.includes(entered)) {
+        isUnlocked = true;
+        errorMsg.textContent = "";
+        lockCard.classList.add("hidden");
+        unlockedView.classList.add("active");
+        generateSignal();
+      } else {
+        errorMsg.textContent = "Invalid password! Try JOY-WATER";
+      }
+    }
+
+    unlockBtn.addEventListener("click", unlockPanel);
+    passInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") unlockPanel();
+    });
+
+    lockToggleBtn.addEventListener("click", () => {
+      if (!isUnlocked) {
+        passInput.focus();
+        return;
+      }
+      isUnlocked = false;
+      passInput.value = "";
+      unlockedView.classList.remove("active");
+      lockCard.classList.remove("hidden");
+    });
+
+    minToggleBtn.addEventListener("click", () => {
+      panel.classList.toggle("minimized");
+      minToggleBtn.textContent = panel.classList.contains("minimized") ? "+" : "−";
+    });
+
+    refreshBtn.addEventListener("click", () => {
+      generateSignal();
+    });
+
+    // 30-second countdown loop
+    setInterval(() => {
+      const nowSec = Math.floor(Date.now() / 1000);
+      const rem = 30 - (nowSec % 30);
+      if (rem === 30) {
+        currentPeriod += 1;
+        if (isUnlocked) generateSignal();
+      }
+      const formatted = rem < 10 ? "00:0" + rem : "00:" + rem;
+      timerVal.textContent = formatted;
+    }, 500);
+
+    // Drag support for touch & mouse
+    let isDragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    function startDrag(clientX, clientY) {
+      isDragging = true;
+      const rect = panel.getBoundingClientRect();
+      panel.style.left = rect.left + "px";
+      panel.style.top = rect.top + "px";
+      panel.style.right = "auto";
+      offsetX = clientX - rect.left;
+      offsetY = clientY - rect.top;
+    }
+
+    function moveDrag(clientX, clientY) {
+      if (!isDragging) return;
+      const maxX = window.innerWidth - panel.offsetWidth - 8;
+      const maxY = window.innerHeight - panel.offsetHeight - 8;
+      const nextX = Math.max(8, Math.min(maxX, clientX - offsetX));
+      const nextY = Math.max(8, Math.min(maxY, clientY - offsetY));
+      panel.style.left = nextX + "px";
+      panel.style.top = nextY + "px";
+    }
+
+    function endDrag() {
+      isDragging = false;
+    }
+
+    dragHandle.addEventListener("mousedown", (e) => {
+      if (e.target.closest("button")) return;
+      startDrag(e.clientX, e.clientY);
+    });
+    window.addEventListener("mousemove", (e) => moveDrag(e.clientX, e.clientY));
+    window.addEventListener("mouseup", endDrag);
+
+    dragHandle.addEventListener("touchstart", (e) => {
+      if (e.target.closest("button")) return;
+      const t = e.touches[0];
+      startDrag(t.clientX, t.clientY);
+    }, { passive: true });
+
+    window.addEventListener("touchmove", (e) => {
+      if (!isDragging) return;
+      const t = e.touches[0];
+      moveDrag(t.clientX, t.clientY);
+    }, { passive: true });
+
+    window.addEventListener("touchend", endDrag);
+  </script>
+</body>
+</html>
